@@ -37,50 +37,64 @@ void usb_enumere(void) {
 output_high(PIN_A2);
 }
 
+void commande_moteur(void) {
+output_low(PIN_B1);
+output_low(PIN_B2);
+output_low(PIN_B3);
+
+int i,j,k;
+
+           if(usb_cdc_getc()=='l'){ // si le pic reçoit le caractère l                
+              output_toggle(PIN_B1); // Commutation d'état du relais du moteur 1 .
+                   i = i+1;
+                   if ((i%2) == 0)   {
+                    printf(usb_cdc_putc, "moteur M1 en arret.\n\r");
+                       }               
+                              else {
+                                 printf(usb_cdc_putc, "moteur M1 en marche.\n\r");
+                                    }                           
+                                     }
+                   
+                   if(usb_cdc_getc()=='m'){ // si le pic reçoit le caractère m                  
+              output_toggle(PIN_B2); // Commutation d'état du relais du moteur 2 .
+                   j = j+1;
+                   if ((j%2) == 0)   {
+                    printf(usb_cdc_putc, "moteur M2 en arret.\n\r");
+                       }             
+                              else {
+                                 printf(usb_cdc_putc, "moteur M2 en marche.\n\r");
+                                    }
+                                      }
+                   if(usb_cdc_getc()=='n'){ // si le pic reçoit le caractère n                
+              output_toggle(PIN_B3); // Commutation d'état du relais du moteur 3 .
+                   k = k+1;
+                   if ((k%2) == 0)   {
+                    printf(usb_cdc_putc, "moteur M3 en arret.\n\r");
+                       }                 
+                              else {
+                                 printf(usb_cdc_putc, "moteur M3 en marche.\n\r");
+                                    }                             
+                                          }
+
+}
+
 
 void main() {
 set_tris_a(0x00); // Configuration des ports A & B en sortie
 set_tris_b(0x00);
-output_low(PIN_B1);
-int i;
-int16 j=PIN_B4;
 
    usb_cdc_init(); // initialisation du COM Virtuel.
-   usb_init(); // Inicialisation du stack USB.
+   usb_init(); // Initialisation du stack USB.
    while(!usb_cdc_connected()) {
    usb_deconnecte();
    }
-   usb_connecte();
-   // Verification de la connection PC__PIC
+   usb_connecte();    // Verification de la connection PC__PIC
    do{
       usb_task();
       if (usb_enumerated()){  // Si le pic est enumere par le PC.
       usb_enumere(); // LED enumeration_ON (red).
          if(usb_cdc_kbhit()){ // Reception de nouveaux données.
-            
-                   if(usb_cdc_getc()=='1'){ // si le pic reçoit le caractère m
-                   
-              output_toggle(PIN_B1); // Commutation d'état du relais du moteur 1 .
-                   for( i=0; i ; i++) {
-                        if (i div 2 = 0) {
-                    printf(usb_cdc_putc, "moteur m1 en marche.\n\r");
-                   }
-                 
-                              else {
-                                 printf(usb_cdc_putc, "moteur m1 en arret.\n\r");
-                   
-                              }
-                   }
-                   }
-                if(usb_cdc_getc()=='v'){ // si pic reçoit le caractère v
-            
-              output_high(PIN_B4); // Commutation d'état du relais du vérin.
-              delay_ms(3000);
-              output_low(PIN_B4);
-                   
-                    
-                }
-        }
+               commande_moteur();      }         
       }
       }while (TRUE); // boucle infinie.
    

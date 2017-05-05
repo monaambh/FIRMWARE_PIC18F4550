@@ -1,0 +1,26 @@
+[PROJECT]
+Target=PIC18F4550_CDC_USB1.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.015
+Compiler=PCH
+[Target Data]
+FileList=PIC18F4550_CDC_USB1.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[PIC18F4550_CDC_USB1.c]
+Type=4
+[mru-list]
+1=PIC18F4550_CDC_USB1.c
+[Opened Files]
+1=PIC18F4550_CDC_USB1.C
+2=..\LED_RGB_USB_SERIE\LED_RGB_USB_SERIE.c
+3=..\TARGETA BULK\TARGETA BULK.c
+4=usb_cdc.h
+5=..\..\..\..\..\Program Files (x86)\PICC\Drivers\usb.h
+6=..\..\..\..\..\Program Files (x86)\PICC\Drivers\usb_desc_cdc.h
+7=..\..\..\..\..\Program Files (x86)\PICC\Drivers\usb.c
+8=..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h
+9=
+[Units]
+Count=1
+1=PIC18F4550_CDC_USB1 (main)
